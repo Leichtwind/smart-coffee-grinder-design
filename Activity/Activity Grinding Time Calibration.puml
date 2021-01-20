@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:Set device status to Calibrating;
+
+while (button pressed?) is (false)
+  :Wait;
+endwhile (true)
+
+:Start Timer;
+
+while (button pressed?) is (true)
+  :Wait;
+endwhile (false)
+
+:End Timer;
+:Save time as grinding time;
+
+:Set device status to Idle;
+
+stop
+
+@enduml

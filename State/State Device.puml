@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+hide empty description
+
+[*] --> Active : Power On
+
+state Active {
+    [*] ---> Idle
+
+    Idle --> Calibrating : User selected grinding\ntime calibration
+    Calibrating --> Idle : Calibration finished
+
+    Idle --> Pending : User selected grinding
+    Pending --> Grinding : User pressed the button
+    Grinding --> Idle : Grinding process\nfinished
+}
+
+Active --> [*] : Power Off
+
+@enduml

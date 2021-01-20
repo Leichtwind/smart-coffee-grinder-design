@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+(Start Grinding) as (Base)
+
+(Base) <|-- (Prepare One Cup)
+(Base) <|-- (Prepare Two Cups)
+
+@enduml

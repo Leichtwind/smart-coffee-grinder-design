@@ -1,0 +1,145 @@
+swagger: "2.0"
+info:
+    title: Smart Coffee Grinder API
+    description: Smart Coffee Grinder API
+    version: 1.0.0
+host: api.example.com
+schemes:
+    - http
+basePath: '/api/v1'
+paths:
+    /configuration:
+        get:
+            tags:
+                - configuration
+            summary: Returns current configuration of the coffee grinder.
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        $ref: '#/definitions/ReadConfiguration'
+    /grinding/start:
+        post:
+            tags:
+                - preparation
+            summary: Start coffee grinding.
+            parameters:
+                -   in: body
+                    name: body
+                    required: true
+                    schema:
+                        $ref: '#/definitions/StartGrinding'
+            responses:
+                204:
+                    description: OK
+    /calibration/start:
+        post:
+            tags:
+                - calibration
+            summary: Start grinding time calibration.
+            produces:
+                - application/json
+            responses:
+                204:
+                    description: OK
+                409:
+                    description: Grinding time is already being calibrated.
+    /calibration/stop:
+        post:
+            tags:
+                - calibration
+            summary: Stop grinding time calibration.
+            produces:
+                - application/json
+            responses:
+                204:
+                    description: OK
+                409:
+                    description: Grinding time is not being calibrated at the moment.
+    /network:
+        get:
+            tags:
+                - network
+            summary: Returns current network configuration of the device.
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        $ref: '#/definitions/ReadNetworkConfiguration'
+        put:
+            tags:
+                - network
+            summary: Update network configuration of the device.
+            produces:
+                - application/json
+            consumes:
+                - application/json
+            parameters:
+                -   in: body
+                    name: body
+                    required: true
+                    schema:
+                        $ref: '#/definitions/UpdateNetworkConfiguration'
+            responses:
+                204:
+                    description: OK
+        delete:
+            tags:
+                - network
+            summary: Reset network configuration of the device.
+            produces:
+                - application/json
+            responses:
+                204:
+                    description: OK
+    /available-networks:
+        get:
+            tags:
+                - network
+            summary: Get list of available networks.
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        type: array
+                        items:
+                            type: string
+
+definitions:
+    ReadConfiguration:
+        type: object
+        properties:
+            grindingTime:
+                type: integer
+            isCalibrating:
+                type: boolean
+    ReadNetworkConfiguration:
+        type: object
+        properties:
+            name:
+                type: string
+            address:
+                type: string
+                example: 192.168.0.1
+    UpdateNetworkConfiguration:
+        type: object
+        properties:
+            name:
+                type: string
+            password:
+                type: string
+                format: password
+    StartGrinding:
+        type: object
+        properties:
+            numberOfCups:
+                type: integer
+                minimum: 1
+                maximum: 2
+                example: 1

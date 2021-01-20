@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+User --> (Configure Network)
+User --> (Calibrate Grinding Time)
+User --> (Start Grinding)
+
+@enduml

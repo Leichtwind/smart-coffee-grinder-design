@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+hide footbox
+
+actor User
+participant "Personal Device" as Device
+participant "Smart Coffee Grinder" as Grinder
+
+User -> Device : open coffee grinder site in the browser
+return opened
+
+User -> Device : click "X Cups"
+Device -> Grinder : request grinding of X cups
+return acknowledge
+return acknowledge
+
+User -> Grinder : fit the holder into the grinder and press the button
+Grinder -> Grinder : start coffee grinding
+return finished
+return finished
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+hide footbox
+
+actor User
+participant "Personal Device" as Device
+participant "Smart Coffee Grinder" as Grinder
+
+User -> Device : connect to the coffee grinder network
+return connected
+
+User -> Device : open coffee grinder site in the browser
+return opened
+
+User -> Device : open Network section
+Device -> Grinder : request available networks
+return networks
+return opened
+
+User -> Device : select network
+Device -> User : ask password
+return enter password
+Device -> Grinder : request network change
+return acknowledge
+return acknowledge
+
+Grinder --> Grinder : connect to the network
+
+User -> Device : connect to the network
+return connected
+
+@enduml

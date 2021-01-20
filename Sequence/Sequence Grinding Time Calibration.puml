@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+hide footbox
+
+actor User
+participant "Personal Device" as Device
+participant "Smart Coffee Grinder" as Grinder
+
+User -> Device : open coffee grinder site in the browser
+return opened
+
+User -> Device : open Calibration section
+return opened
+
+User -> Device : click "Calibrate grinding time"
+Device -> Grinder : request grinding time calibration
+return acknowledge
+return acknowledge
+
+User --> Grinder : fit the holder into the grinder, press the button and hold it
+Grinder --> Grinder : start coffee grinding and grinding timer
+User --> Grinder : release the button
+Grinder --> Grinder : stop coffee grinding and stop grinding timer
+Grinder --> Grinder : save grinding time
+
+@enduml

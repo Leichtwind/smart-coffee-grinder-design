@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+(Configure Network) as (Base)
+
+(Base) <|-- (Change Network)
+(Base) <|-- (Reset Network)
+
+@enduml

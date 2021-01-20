@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide empty members
+
+skinparam classAttributeIconSize 0
+
+class Context {
+    - AbstractState state
+    - {static} Context instance
+    + {static} Context getInstance()
+}
+
+abstract class AbstractState {
+    - Context context
+    # {abstract} Set<StateEnum> validNextStates
+    + canChangeTo(StateEnum state)
+    + changeTo(StateEnum state)
+}
+
+class IdleState
+class CalibratingState
+class PendingState
+class GrindingState
+
+enum StateEnum {
+    Idle
+    Calibrating
+    Pending
+    Grinding
+}
+
+Context "1" --- "1" AbstractState
+AbstractState <|--- IdleState
+AbstractState <|--- CalibratingState
+AbstractState <|--- PendingState
+AbstractState <|--- GrindingState
+StateEnum -l.. AbstractState
+
+@enduml

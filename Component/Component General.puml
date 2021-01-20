@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+() "REST API" as Api
+HTTP <.. [Front End] : use
+HTTP <.. [Back end] : use
+[Back end] --|> Api
+[Front End] ..> Api
+
+@enduml
