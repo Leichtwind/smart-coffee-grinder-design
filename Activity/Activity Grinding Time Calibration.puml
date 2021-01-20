@@ -9,13 +9,16 @@ while (button pressed?) is (false)
   :Wait;
 endwhile (true)
 
-:Start Timer;
+:Start timer;
+:Start grinding;
 
 while (button pressed?) is (true)
   :Wait;
 endwhile (false)
 
-:End Timer;
+:Stop grinding;
+:End timer;
+
 :Save time as grinding time;
 
 :Set device status to Idle;
