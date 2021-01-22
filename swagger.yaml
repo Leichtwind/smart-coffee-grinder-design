@@ -110,6 +110,27 @@ paths:
                         type: array
                         items:
                             type: string
+    /statistics:
+        get:
+            tags:
+                - statistics
+            summary: Get usage statistics.
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        $ref: '#/definitions/Statistics'
+        delete:
+            tags:
+                - statistics
+            summary: Reset usage statistics.
+            produces:
+                - application/json
+            responses:
+                204:
+                    description: OK
 
 definitions:
     ReadConfiguration:
@@ -143,3 +164,17 @@ definitions:
                 minimum: 1
                 maximum: 2
                 example: 1
+    Statistics:
+        type: object
+        properties:
+            cupsGround:
+                $ref: '#/definitions/CupsGround'
+    CupsGround:
+        type: object
+        properties:
+            total:
+                type: integer
+                minimum: 0
+            today:
+                type: integer
+                minimum: 0
